@@ -1,0 +1,34 @@
+TITLE: [Linux / Steam Deck] Working fix for Trove not launching since XIGNCODE3
+
+[h1]Trove on Steam Deck / Linux: working again[/h1]
+
+If pressing [b]Play[/b] in Glyph does nothing since the XIGNCODE3 anti-cheat update, here's a fix that works on Steam Deck (tested November 2026).
+
+[i]Disclosure: this fix, the setup script and this guide were made by an AI assistant (Claude) troubleshooting on my Steam Deck. I tested it and I'm sharing it so others can play again.[/i]
+
+[h2]What's wrong[/h2]
+The anti-cheat loader quits under [b]every Proton version[/b]. Ten were tested, including Proton Experimental, Hotfix and GE-Proton. Under [b]plain WineHQ Wine[/b] it starts normally and the game runs.
+
+[h2]How to fix it[/h2]
+[olist]
+[*]Install Trove on Steam as usual and let it download. No need to launch it.
+[*]Download the setup script: https://github.com/Catanic/trove-linux-fix
+[*]Close Steam. In Desktop Mode, open a terminal in the script's folder and run:
+[code]./install.sh --controller --add-to-steam[/code]
+[*]Start Steam again and launch [b]Trove (Wine)[/b] from your library (Gaming Mode works).
+[*]Log in to Glyph with your [b]Trove email and password[/b], then press Play.
+[/olist]
+
+[h2]Good to know[/h2]
+[list]
+[*][b]Steam login doesn't work[/b] in this setup (it needs Proton). It's the same account; if you never set a password, use "Can't log in?" in Glyph.
+[*]Steam Deck: press [b]View (⧉)[/b] in game to switch to controller prompts. Chat: click the chat box with the trackpad, then Steam + X for the keyboard.
+[*]If Glyph gets stuck: run [i]~/Games/Trove-wine/trove.sh --restart[/i]
+[*][b]Unofficial.[/b] The anti-cheat runs normally and isn't modified, but nobody can guarantee anything about bans. Use it at your own discretion.
+[*]Tested on one Steam Deck so far. Please read the script before running it.
+[/list]
+
+[h2]Technical details[/h2]
+The XIGNCODE loader checks [i]ntoskrnl.exe[/i] against Windows' signature catalog; under Proton that fails and it exits with code 1048. Plain Wine 11.0 doesn't hit that check. Details are posted for Valve on GitHub: ValveSoftware/Proton issue #2986.
+
+If something doesn't work, post your device and what happens when you press Play.

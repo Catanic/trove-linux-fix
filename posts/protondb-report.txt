@@ -1,0 +1,16 @@
+ProtonDB report: Trove (304050)
+
+Suggested answers in the ProtonDB form:
+  - Does it run?          No (under Proton). Use the notes below for the workaround.
+  - Proton version:       Proton Experimental 11.0-20261112 (also failed: Hotfix 20261110, 11.0-2e, 10.0-4b, GE-Proton11-12/11-7/10-34)
+  - Device:               Steam Deck
+
+Notes (paste into "Additional notes"):
+
+Since the XIGNCODE3 anti-cheat update, pressing Play in Glyph does nothing on any Proton build. The anti-cheat loader (xldr_Trove_GL_loader_x64.exe) exits with code 1048 after a signature-catalog check on ntoskrnl.exe, before the game starts. DXVK, the prefix and the Proton version make no difference.
+
+Workaround: run Trove under plain WineHQ Wine 11.0 (flatpak org.winehq.Wine) instead of Proton. There the anti-cheat starts and the game runs (tested on Steam Deck, Nov 2026). Glyph needs email/password login (UseSteam=0, since Steam login needs Proton), Wine audio disabled for GlyphClientApp.exe only (otherwise Glyph freezes), and DXVK for trove_x64.exe (otherwise white boxes in the HUD). A script that sets all of this up: https://github.com/Catanic/trove-linux-fix
+
+Proton bug: https://github.com/ValveSoftware/Proton/issues/2986
+
+(Diagnosis and script made with an AI assistant, Claude; tested on my Steam Deck.)
