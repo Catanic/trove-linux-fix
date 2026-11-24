@@ -5,7 +5,9 @@ Live Trove (now with XIGNCODE3) no longer gets past the anti-cheat loader on any
 > Disclosure: this investigation (the tests, traces and analysis below) was done by an AI assistant (Claude Code) on my Steam Deck. I've checked that the workaround runs the game, and I can run test builds or other debug channels on request.
 
 **System:** Steam Deck OLED, SteamOS 3.9.6 (20261112.101), kernel 7.2.7-valve2, Mesa 26.2.0-devel (RADV VANGOGH)
+**Full system information:** GIST_URL
 **Trove build:** `STABLE-103-467-A-340101` (live, not PTS)
+**Log:** attached `steam-304050.log`, Proton Experimental `experimental-11.0-20261112`, `PROTON_LOG=+wintrust,+crypt,+process`, from the minimal repro below. The loader is pid `014c` in this log; see its `CryptCATAdminEnumCatalogFromHash` lines followed by `NtTerminateProcess ... exit_code 1048`.
 
 **Symptom:** Press Play in Glyph and nothing happens. Glyph starts `xldr_Trove_GL_loader_x64.exe trove_x64.exe -k ... -C [AuthServer] ...`. The loader exits about 3 s later with exit code **1048**. It never installs its service or starts `trove_x64.exe`, and no `xigncode.log` is written.
 
